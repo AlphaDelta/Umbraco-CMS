@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using Umbraco.Cms.Core.Models.Entities;
 
 namespace Umbraco.Cms.Core.Models
@@ -116,10 +117,10 @@ namespace Umbraco.Cms.Core.Models
         void RemovePropertyType(string propertyTypeAlias);
 
         /// <summary>
-        /// Removes a PropertyGroup from the current ContentType
+        /// Removes a property group from the current content type.
         /// </summary>
-        /// <param name="propertyGroupName">Name of the <see cref="PropertyGroup"/> to remove</param>
-        void RemovePropertyGroup(string propertyGroupName);
+        /// <param name="propertyGroupAlias">Name of the <see cref="PropertyGroup" /> to remove</param>
+        void RemovePropertyGroup(string propertyGroupAlias);
 
         /// <summary>
         /// Checks whether a PropertyType with a given alias already exists
@@ -129,12 +130,15 @@ namespace Umbraco.Cms.Core.Models
         bool PropertyTypeExists(string propertyTypeAlias);
 
         /// <summary>
-        /// Adds a PropertyType to a specific PropertyGroup
+        /// Adds the property type to the specified property group (creates a new group if not found and a name is specified).
         /// </summary>
-        /// <param name="propertyType"><see cref="IPropertyType"/> to add</param>
-        /// <param name="propertyGroupName">Name of the PropertyGroup to add the PropertyType to</param>
-        /// <returns>Returns <c>True</c> if PropertyType was added, otherwise <c>False</c></returns>
-        bool AddPropertyType(IPropertyType propertyType, string propertyGroupName);
+        /// <param name="propertyType">The property type to add.</param>
+        /// <param name="groupAlias">The alias of the property group to add the property type to.</param>
+        /// <param name="groupName">The name of the property group to create when not found.</param>
+        /// <returns>
+        /// Returns <c>true</c> if the property type was added; otherwise, <c>false</c>.
+        /// </returns>
+        bool AddPropertyType(IPropertyType propertyType, string groupAlias, string groupName); // TODO Make groupName optional (add null as default value) after removing obsolete overload
 
         /// <summary>
         /// Adds a PropertyType, which does not belong to a PropertyGroup.
@@ -144,20 +148,25 @@ namespace Umbraco.Cms.Core.Models
         bool AddPropertyType(IPropertyType propertyType);
 
         /// <summary>
-        /// Adds a PropertyGroup.
-        /// This method will also check if a group already exists with the same name and link it to the parent.
+        /// Adds a property group with the specified <paramref name="name" /> and <paramref name="alias" />.
         /// </summary>
-        /// <param name="groupName">Name of the PropertyGroup to add</param>
-        /// <returns>Returns <c>True</c> if a PropertyGroup with the passed in name was added, otherwise <c>False</c></returns>
-        bool AddPropertyGroup(string groupName);
+        /// <param name="name">Name of the group.</param>
+        /// <param name="alias">The alias.</param>
+        /// <returns>
+        /// Returns <c>true</c> if a property group with specified <paramref name="alias" /> was added; otherwise, <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// This method will also check if a group already exists with the same alias.
+        /// </remarks>
+        bool AddPropertyGroup(string name, string alias);
 
         /// <summary>
         /// Moves a PropertyType to a specified PropertyGroup
         /// </summary>
         /// <param name="propertyTypeAlias">Alias of the PropertyType to move</param>
-        /// <param name="propertyGroupName">Name of the PropertyGroup to move the PropertyType to</param>
+        /// <param name="propertyGroupAlias">Alias of the PropertyGroup to move the PropertyType to</param>
         /// <returns></returns>
-        bool MovePropertyType(string propertyTypeAlias, string propertyGroupName);
+        bool MovePropertyType(string propertyTypeAlias, string propertyGroupAlias);
 
         /// <summary>
         /// Gets an <see cref="ISimpleContentType"/> corresponding to this content type.

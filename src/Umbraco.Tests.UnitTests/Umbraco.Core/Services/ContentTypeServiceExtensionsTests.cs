@@ -27,7 +27,7 @@ namespace Umbraco.Cms.Tests.UnitTests.Umbraco.Core.Services
                 {
                     new PropertyType(ShortStringHelper, Constants.PropertyEditors.Aliases.TextBox, ValueStorageType.Ntext) { Alias = alias, Name = "Title", Description = string.Empty, Mandatory = false, SortOrder = 1, DataTypeId = -88 }
                 };
-                var pg = new PropertyGroup(contentCollection) { Name = "test", SortOrder = 1 };
+                var pg = new PropertyGroup(contentCollection) { Name = "test", Alias = "test", SortOrder = 1 };
                 ct.PropertyGroups.Add(pg);
             }
 
@@ -67,7 +67,7 @@ namespace Umbraco.Cms.Tests.UnitTests.Umbraco.Core.Services
                 {
                     new PropertyType(ShortStringHelper, Constants.PropertyEditors.Aliases.TextBox, ValueStorageType.Ntext) { Alias = "title", Name = "Title", Description = string.Empty, Mandatory = false, SortOrder = 1, DataTypeId = -88 }
                 };
-                var pg = new PropertyGroup(contentCollection) { Name = "test", SortOrder = 1 };
+                var pg = new PropertyGroup(contentCollection) { Name = "test", Alias = "test", SortOrder = 1 };
                 ct.PropertyGroups.Add(pg);
             }
 
@@ -104,7 +104,7 @@ namespace Umbraco.Cms.Tests.UnitTests.Umbraco.Core.Services
                 {
                     new PropertyType(ShortStringHelper, Constants.PropertyEditors.Aliases.TextBox, ValueStorageType.Ntext) { Alias = "title", Name = "Title", Description = string.Empty, Mandatory = false, SortOrder = 1, DataTypeId = -88 }
                 };
-                var pg = new PropertyGroup(contentCollection) { Name = "test", SortOrder = 1 };
+                var pg = new PropertyGroup(contentCollection) { Name = "test", Alias = "test", SortOrder = 1 };
                 ct.PropertyGroups.Add(pg);
             }
 

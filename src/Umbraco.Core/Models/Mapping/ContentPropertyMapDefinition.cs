@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Core.Models.ContentEditing;
@@ -36,8 +36,10 @@ namespace Umbraco.Cms.Core.Models.Mapping
         private void Map(PropertyGroup source, Tab<ContentPropertyDisplay> target, MapperContext mapper)
         {
             target.Id = source.Id;
+            target.Key = source.Key;
             target.IsActive = true;
             target.Label = source.Name;
+            target.Type = source.Type.ToString();
         }
 
         private void Map(IProperty source, ContentPropertyBasic target, MapperContext context)
